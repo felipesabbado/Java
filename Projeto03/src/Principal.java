@@ -1,20 +1,18 @@
+import br.com.alura.modelos.CartaoDeCredito;
 import br.com.alura.modelos.Compra;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-        int continua = 1;
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\\n");
-        List<Compra> compras = new ArrayList<>();
 
         System.out.println("Digite o limite do cartão: ");
-        double limiteDoCartao = scanner.nextDouble();
+        double limite = scanner.nextDouble();
+        CartaoDeCredito cartao = new CartaoDeCredito(limite);
 
+        int continua = 1;
         while (continua == 1) {
             System.out.println("Digite a descrição da compra: ");
             String descricao = scanner.next();
@@ -22,25 +20,29 @@ public class Principal {
             System.out.println("Digite o valor da compra: ");
             double valor = scanner.nextDouble();
 
-            if (valor > limiteDoCartao) {
+            Compra compra = new Compra(descricao, valor);
+            boolean compraRealizada = cartao.lancaCompra(compra);
+
+            if (compraRealizada) {
+                System.out.println("Compra realizada!");
+                System.out.println("Digite 0 para sair " +
+                        "ou 1 para continuar");
+                continua = scanner.nextInt();
+            } else {
                 System.out.println("\nSaldo insuficiente!\n");
                 continua = 0;
-            } else {
-                compras.add(new Compra(descricao, valor));
-                limiteDoCartao -= valor;
-                System.out.println("Digite 0 para sair ou 1 para continuar");
-                continua = scanner.nextInt();
             }
         }
 
         System.out.println("******************************");
         System.out.println("COMPRAS REALIZADAS\n");
 
-        compras.sort(Comparator.comparing(Compra::getValor));
+        cartao.ordenaCompras();
 
-        compras.forEach(System.out::println);
+        cartao.getCompras().forEach(System.out::println);
 
-        System.out.printf("\nSaldo do cartão: R$%.2f\n", limiteDoCartao);
+        System.out.printf("\nSaldo do cartão: R$%.2f\n",
+                cartao.getSaldo());
         System.out.println("******************************");
     }
 }
