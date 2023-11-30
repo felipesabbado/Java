@@ -1,10 +1,19 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
+        /*
         int celsius = 33;
-        double fahrenheit = (celsius * 1.8) + 32;
+        Calculos.celsiusParaFahrenheit(celsius);
 
-        String mensagem = "A temperatura de %d° Celsius em Fahrenheit é de %.1f°.";
+        int nFibonacci = 15;
+        System.out.println(Calculos.fibonacciRecursivo(nFibonacci));
+        System.out.println(Calculos.fibonacciIterativo(nFibonacci));
+        */
+        String str = "GeeksForGeeks";
+        char[] list = str.toCharArray();
 
-        System.out.printf(mensagem, celsius, fahrenheit);
+        ArrayList<Character> list1 = new ArrayList<>();
+        System.out.println(list1.size());
     }
 }
