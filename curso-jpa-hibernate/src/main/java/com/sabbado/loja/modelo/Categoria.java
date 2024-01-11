@@ -6,32 +6,31 @@ import javax.persistence.*;
 @Table(name = "categorias")
 public class Categoria {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
+    @EmbeddedId
+    private CategoriaId id;
 
     public Categoria() {
     }
 
     public Categoria(String nome) {
-        this.nome = nome;
+        this.id = new CategoriaId(nome, "xpto");
     }
 
-    public Long getId() {
+    public CategoriaId getId() {
         return id;
     }
 
     public String getNome() {
-        return nome;
+        return id.getNome();
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getTipo() {
+        return id.getTipo();
     }
 
     @Override
     public String toString() {
-        return this.getNome();
+        return "Nome: " + this.getNome() + " - " +
+               "Modelo: " + this.getTipo();
     }
 }

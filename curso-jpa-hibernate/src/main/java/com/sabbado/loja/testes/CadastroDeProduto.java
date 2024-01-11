@@ -3,6 +3,7 @@ package com.sabbado.loja.testes;
 import com.sabbado.loja.dao.CategoriaDao;
 import com.sabbado.loja.dao.ProdutoDao;
 import com.sabbado.loja.modelo.Categoria;
+import com.sabbado.loja.modelo.CategoriaId;
 import com.sabbado.loja.modelo.Produto;
 import com.sabbado.loja.util.JPAUtil;
 
@@ -45,6 +46,11 @@ public class CadastroDeProduto {
         produtoDao.cadastrar(celular2);
 
         em.getTransaction().commit();
+
+        Categoria categoria = em.find(Categoria.class, new CategoriaId("CELULARES", "xpto"));
+
+        System.out.println(categoria);
+
         em.close();
     }
 }
