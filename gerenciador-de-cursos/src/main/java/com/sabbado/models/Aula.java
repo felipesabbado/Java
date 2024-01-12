@@ -1,4 +1,4 @@
-package com.sabbado;
+package com.sabbado.models;
 
 public class Aula implements Comparable<Aula> {
 
@@ -20,7 +20,7 @@ public class Aula implements Comparable<Aula> {
 
     @Override
     public String toString() {
-        return "[Aula: " + this.titulo + ", " + this.tempo + " minutos]";
+        return "[" + this.titulo + ", " + this.tempo + " minutos]";
     }
 
     @Override

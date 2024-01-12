@@ -1,4 +1,6 @@
-package com.sabbado;
+package com.sabbado.testes;
+
+import com.sabbado.models.Aula;
 
 import java.util.ArrayList;
 import java.util.Collections;
